@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workout Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Main app container -->
+  <div class="page-container">
+    <!-- Header with title and theme toggle -->
+    <header class="hero-card">
+      <div class="hero-top">
+        <div>
+          <h1>Workout Tracker</h1>
+          <p>Track workouts, review progress, and stay motivated.</p>
+        </div>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle Dark Mode">🌙</button>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <!-- Add workout form -->
+      <section class="card card-panel" id="add-workout-card">
+        <h2>Add Workout</h2>
+        <div class="form-group">
+          <label for="exerciseInput">Exercise Name</label>
+          <input id="exerciseInput" type="text" placeholder="e.g. Push Ups" />
+        </div>
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label for="setsInput">Sets</label>
+            <input id="setsInput" type="number" min="1" placeholder="3" />
+          </div>
+          <div class="form-group half-width">
+            <label for="repsInput">Reps</label>
+            <input id="repsInput" type="number" min="1" placeholder="12" />
+          </div>
+        </div>
+        <button id="addButton" class="primary-button">Add Workout</button>
+        <div class="action-buttons">
+          <button id="saveButton" class="secondary-button">Save Workouts</button>
+          <button id="loadButton" class="secondary-button">Load Workouts</button>
+        </div>
+      </section>
+
+      <!-- Goal tracker section -->
+      <section class="card card-panel" id="goal-card">
+        <h2>Goal Tracker</h2>
+        <p>Set a daily rep goal and watch your progress grow.</p>
+        <div class="form-row goal-row">
+          <div class="form-group">
+            <label for="goalInput">Daily Goal</label>
+            <input id="goalInput" type="number" min="1" placeholder="50" />
+          </div>
+          <button id="setGoalButton" class="secondary-button">Set Goal</button>
+        </div>
+        <div class="goal-status">
+          <span id="goalProgressText">0 / 0 reps today</span>
+          <div class="goal-bar">
+            <div id="goalFill" class="goal-fill"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Progress chart display -->
+      <section class="card card-panel" id="chart-card">
+        <h2>Progress Chart</h2>
+        <p class="section-note">Track your daily reps over time and compare performance between sessions.</p>
+        <canvas id="progressChart" height="220"></canvas>
+      </section>
+
+      <!-- Workout history with search and filter -->
+      <section class="card card-panel" id="history-card">
+        <div class="card-header-row">
+          <h2>Workout History</h2>
+        </div>
+        <div class="search-row">
+          <input id="searchInput" type="search" placeholder="Search exercises..." />
+          <select id="dateFilter">
+            <option value="all">All</option>
+            <option value="today">Today</option>
+            <option value="week">This Week</option>
+          </select>
+        </div>
+        <ul id="workoutList" class="workout-list"></ul>
+      </section>
+
+      <!-- Summary cards -->
+      <section class="card summary-card">
+        <h2>Weekly Summary</h2>
+        <p>Total workouts: <strong id="summaryCount">0</strong></p>
+        <p>Total reps: <strong id="summaryReps">0</strong></p>
+      </section>
+
+      <section class="card personal-best-card">
+        <div class="personal-best-header">
+          <div>
+            <h2>Personal Best</h2>
+            <p class="section-note">Your strongest workout session, updated with each new record.</p>
+          </div>
+          <span class="best-badge">Best</span>
+        </div>
+        <div class="personal-best-body">
+          <div class="best-stat">
+            <span class="best-number" id="personalBestNumber">0</span>
+            <span class="best-unit">total reps</span>
+          </div>
+          <div class="best-details">
+            <p id="personalBestText">No personal best yet.</p>
+            <p id="personalBestDate">Add a workout to unlock your first best set.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <!-- Chart.js library for progress chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
